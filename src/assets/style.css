@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* My tailwind classes */
+
+
+/* Headings  - texts  */
+
+.darrensH1{
+    @apply text-3xl font-bold underline
+}
+
+
+
+
