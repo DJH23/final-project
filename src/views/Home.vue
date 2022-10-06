@@ -94,7 +94,7 @@
               <div class="flex justify-center my-2 mx-4 md:mx-0">
               <form class="w-full max-w-xl bg-white rounded-lg shadow-md p-6 ">
               
-                <div class="flex flex-col px-4"><input class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+                <div class="flex flex-col px-4"><input class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300 "
                     placeholder="Add a Task Title - e.g. Arrange business trip" type="text" name="newTodo"
                     id="name"><input class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
                     placeholder="Add a Task Decription - Confirm dates, book room and flights"
