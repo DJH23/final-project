@@ -1,19 +1,21 @@
 <template>
+  <section class="py-6 px-6 mt-12 my text-lg appearance-none block text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none bg-white">
   <div class="taskItem">
-    <li>
-      <b>{{ taskData.title }} </b><br />
-      <i> {{ taskData.description }}</i
-      ><br />
-      <button class="green_btn">DONE</button
-      ><button class="red_btn">X-Delete</button>
+      <li>
+      <b>Title: {{ taskData.title }} </b>
+      <br />
+      <i>Description: {{ taskData.description }}</i>
+      <br />
+      <button class="inputField m-2 w-20 bg-yellow-500/25 border border-gray-400 rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 ease-in-out duration-200">Edit</button>
+      <button class="inputField m-2 w-20 bg-green-500/25  border border-gray-400 rounded-lg py-1 px-3 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200">Done</button>
+      <button class="inputField m-2 w-20 w bg-red-500/25 border border-gray-400 rounded-lg py-1 px-3 focus:outline-none focus:bg-red-500/50 ease-in-out duration-200">Delete</button>
     </li>
   </div>
+</section>
 </template>
 
 <script setup>
-// const emit = defineEmits([
-//   ENTER-EMITS-HERE
-// ])
+const emit = defineEmits(["childDeleteTask"]);
 const props = defineProps(["taskData"]);
 </script>
 

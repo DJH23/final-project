@@ -2,11 +2,11 @@
    <!-- component -->
 
   <!-- background img -->
-<div>
+<div class="bg-purple-200/50">
   <!-- <div
    class="bg-cover bg-center opacity-30" style="background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1ez3020z2uu9b.cloudfront.net%2Fimagecache%2Fblog-photos%2F16568.jpg&f=1&nofb=1&ipt=e601bc70c33ac7d83ce7e2a343775513e68273d6200f4d13e366c09676db8477&ipo=images)">
   </div> -->
-  <div class="text-center mt-12 signing">
+  <div class="text-center pt-12 signing">
     <div class="flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="160" height="160" viewBox="0 0 160 160" xml:space="preserve">
 <desc>Created with Fabric.js 3.6.3</desc>
@@ -62,7 +62,7 @@
       </a>
     </span> -->
   </div>
-  <div class="flex justify-center my-2 mx-4 md:mx-0">
+  <div class="flex justify-center my-2 mx-4 md:mx-0 pb-20 mb-20">
     <form class="w-full max-w-xl bg-white rounded-lg shadow-md p-6" @submit.prevent="signUp">
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-full px-3 mb-6">

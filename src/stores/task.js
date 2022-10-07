@@ -41,5 +41,12 @@ export const useTaskStore = defineStore("tasks", {
         .delete()
         .eq("is_complete", false);
     },
+
+    async deleteTask() {
+      const { data, error } = await supabase
+        .from("tasks")
+        .delete()
+        .eq("is_complete", false);
+    },
   },
 });

@@ -7,3 +7,7 @@ changed svg <br>
 tried but failed to adjust size of svg <br>
 located CSS animation to be implemented in background (https://www.sliderrevolution.com/resources/css-animated-background/). Didn't try to implement as was worried about breaking something <br>
 tomorrow I want to finish the structure of the main page <br>
+
+
+finished main page layout except a little of the task items
+still haven't sorted the functionality for the task items

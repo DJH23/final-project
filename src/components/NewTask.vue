@@ -1,25 +1,61 @@
 <template>
-  <div>
-    <h2>Create task</h2>
-    <br />
-    <input
+  <div class="flex justify-center my-2 mx-4 md:mx-0">
+    <form class="flexbox element w-full max-w-xl bg-white rounded-lg shadow-md p-6">
+      <div class="flex flex-col px-4">
+        <input
+          v-model="taskTitle"
+          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+          placeholder="Add a Task Title - e.g. Arrange business trip"
+          type="text"
+          name="newTodo"
+          id="newTaskTitle"
+        />
+        <input
+          v-model="taskDesc"
+          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+          placeholder="Add a Task Decription - Confirm dates, book room and flights"
+          type="text"
+          name="newDescription"
+          id="newTaskDesc"
+        />
+        <button
+          @click.prevent="uploadTask"
+          class="appearance-none block w-full bg-yellow-500/25 text-gray-400 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+          type="submit"
+        >
+          Add
+        </button>
+        <h3
+          class="text-gray-900 font-medium px-3 pt-3 leading-tight focus:outline-none"
+          v-if="errorBool"
+        >
+          {{ emptyString }}
+        </h3>
+      </div>
+    </form>
+
+    <!-- <input
       v-model="taskTitle"
       type="text"
       id="newTaskTitle"
       placeholder="Title"
-    /><br /><br />
+    /><br /><br /> -->
 
-    <input
+    <!-- <input
       v-model="taskDesc"
       type="text"
       id="newTaskDesc"
       placeholder="Description"
-    /><br /><br />
+    /><br /><br /> -->
 
-    <button @click.prevent="uploadTask">Create</button>
-  </div>
-  <div>
-    <h3 v-if="errorBool">{{ emptyString }}</h3>
+    <!-- <button @click.prevent="uploadTask">Create</button> -->
+    <ol>
+      <TaskItem
+        v-for="(task, index) in taskArray"
+        :key="index"
+        :taskData="task"
+      ></TaskItem>
+    </ol>
   </div>
 </template>
 
@@ -35,10 +71,10 @@ const emptyString = ref("");
 function uploadTask() {
   if (taskTitle.value === "") {
     errorBool.value = true;
-    emptyString.value = "Title is required.";
+    emptyString.value = "Title is required";
     setTimeout(() => {
       errorBool.value = false;
-    }, 1000);
+    }, 1300);
   } else {
     emit("childNewTask", taskTitle.value, taskDesc.value);
     taskTitle.value = "";
