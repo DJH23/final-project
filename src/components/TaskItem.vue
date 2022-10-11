@@ -1,22 +1,43 @@
 <template>
-  <section class="py-6 px-6 mt-12 my text-lg appearance-none block text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none bg-white">
+  <section class="py-6 px-6 mt-12 mx-3 text-lg appearance-none block text-gray-900 font-medium border rounded-lg py-3 px-3 leading-tight focus:outline-none bg-white w-72 shadow-md relative">
   <div class="taskItem">
-      <li>
-      <b>Title: {{ taskData.title }} </b>
+      <li class="marker:text-yellow-500">
+      <b class="text-purple-500 font-medium">Title: <span class="text-yellow-500">{{ taskData.title }}</span></b>
       <br />
-      <i>Description: {{ taskData.description }}</i>
+      <div class="justify-between h-32 flex flex-col">
+        
+      <div class="mt-2 mb-6 indent-4 pl-2.5 resize-y">
+        <i>Description: <span class="not-italic">{{ taskData.description }}</span></i>
       <br />
-      <button class="inputField m-2 w-20 bg-yellow-500/25 border border-gray-400 rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 ease-in-out duration-200">Edit</button>
-      <button class="inputField m-2 w-20 bg-green-500/25  border border-gray-400 rounded-lg py-1 px-3 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200">Done</button>
-      <button class="inputField m-2 w-20 w bg-red-500/25 border border-gray-400 rounded-lg py-1 px-3 focus:outline-none focus:bg-red-500/50 ease-in-out duration-200">Delete</button>
+    </div>
+    <div class="absolute bottom-5">
+      <button v-if="!showInput" class="inputField ml-4 m-2 w-14 bg-yellow-500/25 border border-gray-400 focus:border- text-sm text-gray-400 focus:text-black font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 ease-in-out duration-200" @click="toggleInput">Edit</button>
+      <input v-if="showInput" type="text">
+      <input v-if="showInput" type="text">
+      <button v-if="showInput" class="inputField ml-4 m-2 w-14 bg-yellow-500/25 border border-gray-400 focus:border- text-sm text-gray-400 focus:text-black font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 ease-in-out duration-200" @click="editTask">Confirm Edit</button>
+      <button class="inputField m-2 w-14 bg-green-500/25  border border-gray-400 text-sm text-gray-400 focus:text-black font-medium leading-tight rounded-lg py-1  focus:outline-none focus:bg-green-500/50 ease-in-out duration-200" @click="doneTask">Done</button>
+      <button class="inputField m-2 w-14 w bg-red-500/25 border border-gray-400 text-sm text-gray-400 focus:text-black font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-red-500/50 ease-in-out duration-200" @click="deleteTask">Delete</button>
+    </div>
+    </div>
     </li>
   </div>
 </section>
 </template>
 
 <script setup>
+import {ref} from "vue"
 const emit = defineEmits(["childDeleteTask"]);
 const props = defineProps(["taskData"]);
+const showInput = ref(false)
+function deleteTask() {
+  emit("childDeleteTask", props.taskData.id)
+};
+function toggleInput() {
+  showInput.value = true
+}
+function editTask() {
+  showInput.value = false
+}
 </script>
 
 <style></style>

@@ -117,15 +117,16 @@
         </section>
         <section class="bg-purple-200/50">
           <h1
-            class="text-xl ml-16 font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-500/25 font-medium rounded-full shadow-sm"
+            class="text-xl ml-16 font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-300/20 font-medium rounded-full shadow-sm"
           >
             Task Items
           </h1>
-          <div class="flex flex-wrap justify-around">
+          <div class="flex flex-wrap justify-evenly mx-8">
             <TaskItem
-              v-for="(task, index) in taskArray"
+              v-for="task in taskArray"
+              :key = "task.id"
               :taskData="task"
-              @childDeleteTask="sendToStore"
+              @childDeleteTask="deleteTask"
             />
           </div>
           <Footer />
@@ -161,6 +162,11 @@ readFromStore();
 // Enviamos los datos de la tarea a la Tienda taskStore
 async function sendToStore(title, description) {
   await taskStore.addTask(title, description);
+  readFromStore();
+};
+
+async function deleteTask(id) {
+  await taskStore.deleteTask(id);
   readFromStore();
 }
 // async function readAll() {
