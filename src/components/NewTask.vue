@@ -1,10 +1,10 @@
 <template>
   <div class="flex justify-center my-2 mx-4 md:mx-0">
-    <form class="flexbox element w-full max-w-xl bg-white rounded-lg shadow-md p-6">
-      <div class="flex flex-col px-4">
+    <form class="flexbox element w-full max-w-xl bg-white rounded-lg  drop-shadow-xl p-6">
+      <div class="flex flex-col px-4 ">
         <input
           v-model="taskTitle"
-          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 hover:border-gray-600 ease-in-out duration-300 hover:animate-pulse"
           placeholder="Add a Task Title - e.g. Arrange business trip"
           type="text"
           name="newTodo"
@@ -12,15 +12,15 @@
         />
         <input
           v-model="taskDesc"
-          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
-          placeholder="Add a Task Decription - Confirm dates, book room and flights"
+          class="inputField mb-4 appearance-none block w-full bg-yellow-500/25 text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none hover:border-gray-600 focus:bg-purple-500/25 ease-in-out duration-300 hover:animate-pulse"
+          placeholder="Add a Task Description - e.g. Confirm dates and book room"
           type="text"
           name="newDescription"
           id="newTaskDesc"
         />
         <button
           @click.prevent="uploadTask"
-          class="appearance-none block w-full bg-yellow-500/25 text-gray-400 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300"
+          class="appearance-none block w-full bg-yellow-500/25 text-gray-400 font-medium border border-gray-400 rounded-lg py-3 px-3 hover:border-gray-600 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300 hover:animate-pulse"
           type="submit"
         >
           Add

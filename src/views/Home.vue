@@ -3,7 +3,7 @@
     <div id="app" data-v-app="">
       <div class="min-h-min">
         <Nav />
-        <section class="pt-4 bg-purple-200/50">
+        <section class="textReveal pt-4 bg-purple-200/50">
           <div class="container px-4 mx-auto">
             <div
               class="max-w-4xl mx-auto text-center animate__animated animate__fadeIn"
@@ -117,16 +117,17 @@
         </section>
         <section class="bg-purple-200/50">
           <h1
-            class="text-xl ml-16 font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-300/20 font-medium rounded-full shadow-sm"
-          >
+            class="text-xl ml-16  font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-300/20 font-medium rounded-full shadow-sm">
             Task Items
           </h1>
-          <div class="flex flex-wrap justify-evenly mx-8">
+          <div class="flex flex-wrap justify-evenly mx-8 items-start drop-shadow-xl shadow-purple-500">
             <TaskItem
               v-for="task in taskArray"
-              :key = "task.id"
+              :key="task.id"
               :taskData="task"
               @childDeleteTask="deleteTask"
+              @childEditTask="editTask"
+              @childTaskDone="taskDone"
             />
           </div>
           <Footer />
@@ -153,7 +154,6 @@ const taskStore = useTaskStore();
 // Inicializamos array de tareas
 const taskArray = ref([]);
 async function readFromStore() {
-  console.log("prueba");
   taskArray.value = await taskStore.fetchTasks();
   console.log(taskArray.value);
 }
@@ -163,10 +163,21 @@ readFromStore();
 async function sendToStore(title, description) {
   await taskStore.addTask(title, description);
   readFromStore();
-};
+}
 
 async function deleteTask(id) {
   await taskStore.deleteTask(id);
+  readFromStore();
+}
+
+async function editTask(id, newTitle, newDescription) {
+  await taskStore.updateTask(id, newTitle, newDescription);
+  readFromStore();
+}
+
+async function taskDone(taskID) {
+  let isComplete = await taskStore.checkComplete(taskID);
+  await taskStore.completeTask(taskID, isComplete);
   readFromStore();
 }
 // async function readAll() {

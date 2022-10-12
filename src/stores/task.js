@@ -28,11 +28,19 @@ export const useTaskStore = defineStore("tasks", {
       ]);
     },
 
-    async completeTask(taskID) {
+    async completeTask(taskID, isComplete) {
       const { data, error } = await supabase
         .from("tasks")
-        .update({ is_complete: true })
+        .update({ is_complete: !isComplete})
         .eq("id", taskID);
+    },
+
+    async checkComplete(id){
+      const { data, error } = await supabase
+      .from("tasks")
+      .select("is_complete")
+      .eq("id", id);
+      return data[0].is_complete;
     },
 
     async deleteAllTasks() {
@@ -48,5 +56,11 @@ export const useTaskStore = defineStore("tasks", {
         .delete()
         .eq("id", taskID);
     },
+    async updateTask(id, newTitle, newDescription) {
+      const { data, error } = await supabase
+        .from("tasks")
+        .update({title:newTitle, description:newDescription})
+        .eq("id", id);
+    }
   },
 });
