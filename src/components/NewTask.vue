@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center my-2 mx-4 md:mx-0">
+  <div class="animate__animated animate__backInRight flex justify-center my-2 mx-4 md:mx-0">
     <form class="flexbox element w-full max-w-xl bg-white rounded-lg  drop-shadow-xl p-6">
       <div class="flex flex-col px-4 ">
         <input
@@ -20,7 +20,7 @@
         />
         <button
           @click.prevent="uploadTask"
-          class="appearance-none block w-full bg-yellow-500/25 text-gray-400 font-medium border border-gray-400 rounded-lg py-3 px-3 hover:border-gray-600 leading-tight focus:outline-none focus:bg-purple-500/25 ease-in-out duration-300 hover:animate-pulse"
+          class="appearance-none block w-full bg-green-500/25 text-gray-400 font-medium border border-gray-400 rounded-lg py-3 px-3 hover:border-gray-600 leading-tight focus:outline-none focus:bg-green-500/25 ease-in-out duration-300 hover:animate-pulse"
           type="submit"
         >
           Add

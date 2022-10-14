@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="bg-white border-yellow-500 bg-purple-100/90 px-2 sm:px-4 py-4 rounded"
+      class="animate__animated animate__backInLeft bg-white border-yellow-500 bg-purple-100/90 px-2 sm:px-4 py-4 rounded"
     >
       <div
         class="container flex flex-wrap justify-between items-center mx-auto"

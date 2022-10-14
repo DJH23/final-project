@@ -1,5 +1,5 @@
 <template>
-  <div id="flexbox">
+  <div class="" id="flexbox ">
     <div id="app" data-v-app="">
       <div class="min-h-min">
         <Nav />
@@ -9,13 +9,14 @@
               class="max-w-4xl mx-auto text-center animate__animated animate__fadeIn"
             >
               <h2
-                class="mb-4 text-4xl md:text-5xl leading-tight text-coolGray-900 font-bold tracking-tighter"
+                class="animate__animated animate__backInDown mb-4 text-4xl md:text-5xl leading-tight text-coolGray-900 font-bold tracking-tighter"
               >
                 Add a new
                 <span class="text-yellow-500"
                   >Task<span class="text-purple-500">app</span></span
                 >
               </h2>
+              <div class="animate__animated animate__fadeInUp">
               <p class="text-lg md:text-xl text-cool Gray-500 font-medium">
                 Keep your life organised
               </p>
@@ -29,8 +30,9 @@
                 </ul>
               </div>
               <p class="mb-10 mt-8 text-lg text-coolGray-500 font-medium">
-                Today's Date is Oct 4th 2022
+                Today's Date is {{ date }}
               </p>
+            </div>
               <div>
                 <!-- <form class="w-full max-w-xl bg-white rounded-lg shadow-md p-6 ">
               
@@ -117,10 +119,13 @@
         </section>
         <section class="bg-purple-200/50">
           <h1
-            class="text-xl ml-16  font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-300/20 font-medium rounded-full shadow-sm">
+            class="animate__animated animate__fadeInLeft text-xl ml-16 font-medium inline-block py-1 px-2 mb-4 leading-5 text-purple-500 bg-yellow-300/20 font-medium rounded-full shadow-sm"
+          >
             Task Items
           </h1>
-          <div class="flex flex-wrap justify-evenly mx-8 items-start drop-shadow-xl shadow-purple-500">
+          <div
+            class="animate__animated animate__fadeInLeft flex flex-wrap justify-evenly mx-8 items-start drop-shadow-xl shadow-purple-500"
+          >
             <TaskItem
               v-for="task in taskArray"
               :key="task.id"
@@ -138,6 +143,7 @@
 </template>
 
 <script setup>
+import "animate.css";
 import NewTask from "@/components/NewTask.vue";
 import { useTaskStore } from "../stores/task.js";
 import TaskItem from "../components/TaskItem.vue";
@@ -148,6 +154,7 @@ import Nav from "../components/Nav.vue";
 //coger el email del usuario
 import { useUserStore } from "@/stores/user.js";
 import Footer from "../components/Footer.vue";
+
 const userName = ref(useUserStore().user.email);
 // nos definimos la tienda del usuario dentro de una constante
 const taskStore = useTaskStore();
@@ -158,6 +165,8 @@ async function readFromStore() {
   console.log(taskArray.value);
 }
 readFromStore();
+
+let date = new Date().toISOString().split("T")[0];
 
 // Enviamos los datos de la tarea a la Tienda taskStore
 async function sendToStore(title, description) {
@@ -186,14 +195,7 @@ async function taskDone(taskID) {
 // readAll();
 </script>
 <style scoped>
-#todoTasks {
-  background-color: rgb(33, 35, 118);
-  color: white;
-}
-
-#doneTasks {
-  background-color: rgb(41, 93, 41);
-  color: white;
+#animation {
 }
 </style>
 

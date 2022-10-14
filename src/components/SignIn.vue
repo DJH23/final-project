@@ -7,7 +7,7 @@
    class="bg-cover bg-center opacity-30" style="background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1ez3020z2uu9b.cloudfront.net%2Fimagecache%2Fblog-photos%2F16568.jpg&f=1&nofb=1&ipt=e601bc70c33ac7d83ce7e2a343775513e68273d6200f4d13e366c09676db8477&ipo=images)">
   </div> -->
   <div class="text-center pt-12">
-    <div class="flex items-center justify-center">
+    <div class="animate__animated animate__fadeInRightBig flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="160" height="160" viewBox="0 0 160 160" xml:space="preserve">
 <desc>Created with Fabric.js 3.6.3</desc>
 <defs>
@@ -51,19 +51,21 @@
 </g>
 </svg>
     </div>
-    <h2 class="text-4xl tracking-tight pt-8">
+    <h2 class="animate__animated animate__fadeInLeftBig text-4xl tracking-tight pt-8">
       Sign in to your TaskApp account
     </h2>
-    <h3 class="text-2xl py-5 tracking-tight">
+    <h3 class="animate__animated animate__fadeInLeftBig text-2xl py-5 tracking-tight">
       Start Organising Your Tasks Today
     </h3>
+<div class="animate__animated animate__fadeInLeftBig">
     <span class="text-sm"
-      ><a href="#" class="text-yellow-500 hover:text-purple-500 transition duration-250 ease-in-out">
+      ><a href="#" class=" text-yellow-500 hover:text-purple-500 transition duration-250 ease-in-out">
         <PersonalRouter :route="route" :buttonText="buttonText" />
       </a>
     </span>
   </div>
-  <div class="flex justify-center my-2 mx-4 md:mx-0 pb-20">
+  </div>
+  <div class="animate__animated animate__fadeInUpBig flex justify-center my-2 mx-4 md:mx-0 pb-20">
     <form
       class="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
       @submit.prevent="signIn"

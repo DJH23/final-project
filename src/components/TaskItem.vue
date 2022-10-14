@@ -15,7 +15,7 @@
 
       <svg
         v-if="doneTask"
-        class="mt-2"
+        class="mt-4 -ml-1.5"
         ease-in-out
         duration-200
         xmlns="http://www.w3.org/2000/svg"
@@ -39,42 +39,43 @@
       >
         <i
           ><u class="underline-offset-2 leading-loose">Description:</u><br />
-          <span class="not-italic text-">{{ taskData.description }}</span></i
+          <span class="not-italic">{{ taskData.description }}</span></i
         >
       </div>
 
-      <div class="absolute bottom-5 flex flex-wrap items-end">
+      <div class="absolute bottom-5 flex flex-wrap justify-around right-10 items-end">
         <button
-          v-if="!showInput  && !showReopen"
-          class="inputField ml-4 mx-2 w-14 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 focus:text-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 hover:bg-yellow-500/50 hover:text-gray-600 ease-in-out duration-200"
-          @click="toggleInput">
+          v-if="!showInput && !showReopen && showElement"
+          class="inputField mx-2 w-14 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 focus:text-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 hover:bg-yellow-500/50 hover:text-gray-600 ease-in-out duration-200"
+          @click="toggleInput"
+        >
           Edit
         </button>
-        <div class="bg-white z-10 shadow-md shadow-gray-500/25 mb-2">
+        <div class="bg-white z-10 shadow-md shadow-gray-500/25 mb-4 rounded-lg">
           <input
-            v-if="showInput"
+            v-if="showInput  && !showReopen"
             v-model="newTitle"
             placeholder="New Title:"
             type="text"
             class="inputField m-2 w-64 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 focus:text-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-purple-500/30 hover:text-gray-600 ease-in-out duration-200 mb-2 pl-2.5 hover:animate-pulse"
           />
           <input
-            v-if="showInput"
+            v-if="showInput && !showReopen"
             v-model="newDescription"
             placeholder="New Description:"
             type="text"
-            class="inputField m-2 w-64 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 focus:text-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-purple-500/30 hover:text-gray-600 ease-in-out duration-200 mb-4 pl-2.5 hover:animate-pulse"
+            class="inputField m-2 w-64 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 focus:text-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-purple-500/30 hover:text-gray-600 ease-in-out duration-200 mb-2 pl-2.5 hover:animate-pulse"
           />
         </div>
         <button
-          v-if="showInput"
-          class="inputField ml-4 mr-2 w-14 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 hover:bg-yellow-500/50 hover:text-gray-600 ease-in-out duration-200"
+          v-if="showInput  && !showReopen"
+          class="inputField ml-4 mr-2 w-28 bg-yellow-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 focus:outline-none focus:bg-yellow-500/50 hover:bg-yellow-500/50 hover:text-gray-600 ease-in-out duration-200"
           @click="editTask"
         >
           Confirm Edit
         </button>
         <button
-          v-if="!showReopen"
+          v-if="!showReopen && showElement && !hideDoneandDeleteButton"
           class="inputField mx-2 w-14 bg-green-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 hover:bg-green-500/50 hover:text-gray-600 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200"
           @click="taskDone"
         >
@@ -82,31 +83,51 @@
         </button>
         <button
           v-if="showReopen"
-          class="inputField ml-14 mb-3 w-14 bg-green-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 hover:bg-green-500/50 hover:text-gray-600 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200"
+          class="inputField mb-3.5 pb-1 leading-tight mr-28 w-14 bg-green-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 font-medium  rounded-lg py-1 hover:bg-green-500/50 hover:text-gray-600 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200"
           @click="taskDone"
         >
           Reopen
         </button>
+        <div class="delete-bin">
+          <button
+            v-if="!showConfirmDelete && !showReopen  && !hideDoneandDeleteButton"
+            class="inputField mx-2 w-14 bg-red-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 hover:bg-red-500/50 hover:text-gray-600 focus:outline-none focus:bg-red-500/50 ease-in-out duration-200"
+            @click="toggleConfirmDelete"
+          >
+          <div class="flex justify-center">
+            <!-- <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                fill="#9ca3af"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </div> -->
+            Delete
+          </div>
+          </button>
+        </div>
         <button
-          v-if="!showConfirmDelete && !showReopen"
-          class="inputField mx-2 w-14 bg-red-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 hover:bg-red-500/50 hover:text-gray-600 focus:outline-none focus:bg-red-500/50 ease-in-out duration-200"
-          @click="toggleConfirmDelete"
+          v-if="showConfirmDelete && !showReopen"
+          class="inputField mx-2 w-16 bg-green-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 font-medium leading-tight rounded-lg py-1 hover:bg-green-500/50 hover:text-gray-600 focus:outline-none focus:bg-green-500/50 ease-in-out duration-200"
+          @click="goBack"
         >
-          <!-- <svg class="pt-" xmlns="http://www.w3.org/2000/svg" height="20px"
-          viewBox="0 0 24 24" width="20px" fill="#64748b">
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path
-          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg> -->
-          Delete
+          Go Back
         </button>
         <button
-          v-if="showConfirmDelete"
-          class="inputField mx-2 w-14 bg-red-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 hover:bg-red-500/50 hover:text-gray-600 focus:outline-none focus:bg-red-500/40 ease-in-out duration-200"
+          v-if="showConfirmDelete && !showReopen"
+          class="inputField mx-2 w-28 bg-red-500/25 border border-gray-400 hover:border-gray-600 text-sm text-gray-400 focus:text-gray-600 font-medium leading-tight rounded-lg py-1 hover:bg-red-500/50 hover:text-gray-600 focus:outline-none focus:bg-red-500/40 ease-in-out duration-200"
           @click="deleteTask"
         >
           Confirm Delete
         </button>
+      
       </div>
       <!-- </div> -->
     </div>
@@ -120,18 +141,22 @@ const props = defineProps(["taskData"]);
 const showInput = ref(false);
 const showConfirmDelete = ref(false);
 const showReopen = ref(props.taskData.is_complete);
+const showElement = ref(true);
 const newTitle = ref("");
 const newDescription = ref("");
 const doneTask = ref(props.taskData.is_complete);
+const hideDoneandDeleteButton = ref(false);
 
 function deleteTask() {
   emit("childDeleteTask", props.taskData.id);
 }
 function toggleInput() {
   showInput.value = true;
+  hideDoneandDeleteButton.value = true;
 }
 function editTask() {
   showInput.value = false;
+  hideDoneandDeleteButton.value = false;
   emit(
     "childEditTask",
     props.taskData.id,
@@ -141,6 +166,7 @@ function editTask() {
 }
 function toggleConfirmDelete() {
   showConfirmDelete.value = true;
+  showElement.value = false;
 }
 function toggleReopen() {
   showReopen.value = !showReopen.value;
@@ -154,9 +180,14 @@ function taskDone() {
 function toggleDoneTask() {
   doneTask.value = !doneTask.value;
 }
+function goBack() {
+  showElement.value = true;
+  showConfirmDelete.value = false;
+}
 </script>
 
-<style></style>
+<style>
+</style>
 
 <!-- 
 **Hints**
